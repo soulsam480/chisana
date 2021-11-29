@@ -22,3 +22,7 @@
 - only valid inside components
 - createRoot -> create registry and inject
 - chisana._r -> global atoms registry -> reactive<{[key: string]: S}>()
+
+
+### issues
+- there is a memory leak issue i think

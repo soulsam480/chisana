@@ -4,7 +4,7 @@
   "description": "jotai for vue",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:app": "cd app && npm run dev"
   },
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "license": "MIT",
