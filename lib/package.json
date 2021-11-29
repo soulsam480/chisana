@@ -1,0 +1,16 @@
+{
+  "name": "chisana",
+  "version": "0.0.0",
+  "description": "jotai for vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soulsam480 <soulsam480@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "4.4.4",
+    "vite": "^2.6.14",
+    "vue": "^3.2.23"
+  }
+}
