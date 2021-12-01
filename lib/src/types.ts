@@ -13,6 +13,8 @@ export type ChisanaWithShallowState<T extends Chisana> = {
 
 export type Getter = { <T>(atom: GenericAtom<T>): Ref<T> };
 
+export type SetValue<T> = (val: T | ((prevVal: T) => T)) => void;
+
 export type Reader<T> = (getter: Getter) => Ref<T>;
 
 export type AtomValue<T> = Ref<T> | Reader<T>;

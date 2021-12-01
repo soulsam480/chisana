@@ -17,6 +17,7 @@ import {
   Getter,
   ReadableAtom,
   Reader,
+  SetValue,
   WritableAtom,
 } from './types';
 
@@ -99,7 +100,7 @@ function createGetAtom<T>(
 export function useAtom<T>(atom: ReadableAtom<T>): [ComputedRef<T>];
 export function useAtom<T>(
   atom: WritableAtom<T>,
-): [ComputedRef<T>, (val: T | ((prevVal: T) => T)) => void];
+): [ComputedRef<T>, SetValue<T>];
 export function useAtom<T>(atom: GenericAtom<T>) {
   const currentInstance = getCurrentInstance();
 
@@ -116,17 +117,17 @@ export function useAtom<T>(atom: GenericAtom<T>) {
   createGetAtom(atom, chisana);
 
   // set value
-  function setValue(val: T | ((prevVal: T) => T)) {
+  const setValue: SetValue<T> = (val) => {
     if (!chisana) return;
 
     chisana._r[atom.key] =
-      val instanceof Function ? val(chisana._r[atom.key] as T) : val;
-  }
+      typeof val === 'function' ? (val as any)(chisana._r[atom.key] as T) : val;
+  };
 
   // is a derived atom only return getter
   if (typeof atom.value === 'function')
-    return [computed(() => chisana._r[atom.key] as T)];
+    return [computed(() => chisana._r[atom.key])];
 
   // return getter and setter
-  return [computed(() => chisana._r[atom.key] as T), setValue];
+  return [computed(() => chisana._r[atom.key]), setValue];
 }
