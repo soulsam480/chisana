@@ -1,12 +1,15 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
 import { useAtom } from '../../lib/src';
-import { doubledAtom, someAtom } from './atom';
+import { doubledAtom, oneAdded, someAtom } from './atom';
 import HelloWorld from './components/HelloWorld.vue';
 
+// primitive
 const [val, setVal] = useAtom(someAtom);
-
+// derived
 const [double] = useAtom(doubledAtom);
+// derived from derived
+const [added] = useAtom(oneAdded);
 
 function setValueFunction(val: number) {
   return val + 1;
@@ -19,6 +22,8 @@ function setValueFunction(val: number) {
     <div>Base atom :: {{ val }}</div>
 
     <div>Derived atom :: {{ double }}</div>
+
+    <div>Plus one :: {{ added }}</div>
 
     <button @click="setVal(setValueFunction)">inc</button>
 

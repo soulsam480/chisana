@@ -81,7 +81,7 @@ function createGetAtom<T>(
 ) {
   const getAtomVal: Getter = <T>(atom: GenericAtom<T>) => {
     createGetAtom(atom, chisana);
-
+    // to cerate effect and retain reactivity
     return computed(() => chisana._r[atom.key] as T);
   };
 
