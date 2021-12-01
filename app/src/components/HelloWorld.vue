@@ -5,8 +5,6 @@ import { someAtom } from '../atom';
 const [val] = useAtom(someAtom);
 </script>
 <template>
-  <div>
-    {{ val }}
-  </div>
+  <div>Base atom :: {{ val }}</div>
 </template>
 <style lang="scss" scoped></style>

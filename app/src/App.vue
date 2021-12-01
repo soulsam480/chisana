@@ -1,24 +1,37 @@
 <script setup lang="ts">
 // import { ref } from 'vue';
 import { useAtom } from '../../lib/src';
-import { someAtom } from './atom';
+import { doubledAtom, someAtom } from './atom';
 import HelloWorld from './components/HelloWorld.vue';
 
 const [val, setVal] = useAtom(someAtom);
+
+const [double] = useAtom(doubledAtom);
 
 function setValueFunction(val: number) {
   return val + 1;
 }
 </script>
 <template>
-  <div>Chisana test</div>
+  <div class="main">
+    <div>Chisana Play</div>
 
-  <div>Value :: {{ val }}</div>
+    <div>Base atom :: {{ val }}</div>
 
-  <button @click="setVal(setValueFunction)">inc</button>
+    <div>Derived atom :: {{ double }}</div>
 
-  <h1>From hello world</h1>
+    <button @click="setVal(setValueFunction)">inc</button>
 
-  <HelloWorld />
+    <h4>From hello world</h4>
+    <HelloWorld />
+  </div>
 </template>
-<style lang="scss" scoped></style>
+<style>
+.main {
+  padding: 10px;
+}
+
+.main div {
+  margin: 10px 0;
+}
+</style>
