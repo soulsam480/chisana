@@ -1,6 +1,6 @@
 {
   "name": "chisana",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "description": "Jotai inspired atomic state management for vue 3",
   "sideEffects": false,
   "exports": {
@@ -10,8 +10,8 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/chisana.cjs.js",
+  "module": "./dist/chisana.es.js",
   "typings": "./dist/index.d.ts",
   "files": [
     "dist"

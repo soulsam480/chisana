@@ -1,6 +1,6 @@
 {
   "name": "chisana",
-  "version": "0.0.0-alpha",
+  "version": "0.0.2-alpha",
   "description": "jotai for vue",
   "scripts": {
     "dev:app": "cd app && npm run dev",
