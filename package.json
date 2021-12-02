@@ -4,7 +4,9 @@
   "description": "jotai for vue",
   "main": "index.js",
   "scripts": {
-    "dev:app": "cd app && npm run dev"
+    "dev:app": "cd app && npm run dev",
+    "build:lib": "cd lib && npm run build",
+    "build:app": "cd app && npm run build"
   },
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "license": "MIT",

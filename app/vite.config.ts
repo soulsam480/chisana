@@ -7,4 +7,7 @@ export default defineConfig({
   define: {
     __DEV__: true,
   },
+  build: {
+    minify: false,
+  },
 });

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAtom } from '../../../lib/src';
+import { useAtom } from 'chisana';
 import { someAtom } from '../atom';
 
 const [val] = useAtom(someAtom);

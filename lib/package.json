@@ -1,10 +1,24 @@
 {
   "name": "chisana",
   "version": "0.0.0",
-  "description": "jotai for vue",
-  "main": "index.js",
+  "description": "Jotai inspired atomic state management for vue 3",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/chisana.cjs.js",
+      "import": "./dist/chisana.es.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build && npm run dts",
+    "dts": "tsc --emitDeclarationOnly --declaration"
   },
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "license": "MIT",

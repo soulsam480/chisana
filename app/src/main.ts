@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 
-import { createChisana } from '../../lib/src/index';
+import { createChisana } from 'chisana';
 
 const chisana = createChisana();
 

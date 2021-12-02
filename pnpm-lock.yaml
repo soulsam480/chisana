@@ -16,11 +16,13 @@ importers:
     specifiers:
       '@types/node': ^16.11.10
       '@vitejs/plugin-vue': ^1.9.3
+      chisana: workspace:^0.0.1
       typescript: ^4.4.3
       vite: ^2.6.4
       vue: ^3.2.16
       vue-tsc: ^0.3.0
     dependencies:
+      chisana: link:../lib
       vue: 3.2.23
     devDependencies:
       '@types/node': 16.11.10

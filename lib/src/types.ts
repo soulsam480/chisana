@@ -12,10 +12,14 @@ export type ChisanaWithShallowState<T extends Chisana> = {
 } & Omit<T, '_r'>;
 
 export type Getter = { <T>(atom: GenericAtom<T>): Ref<T> };
+export type Setter = {
+  <T>(atom: Primitive<T>, value: T): void;
+};
 
 export type SetValue<T> = (val: T | ((prevVal: T) => T)) => void;
 
 export type Reader<T> = (getter: Getter) => Ref<T>;
+export type Writer<T> = (getter: Getter, setter: Setter, update: T) => void;
 
 export type AtomValue<T> = Ref<T> | Reader<T>;
 
@@ -23,7 +27,8 @@ export type Atom = {
   key: string;
 };
 
-export type WritableAtom<T> = Atom & { value: Ref<T> };
-export type ReadableAtom<T> = Atom & { value: Reader<T> };
+export type Primitive<T> = Atom & { read: Ref<T> }; // primitive
+export type ReadableAtom<T> = Atom & { read: Reader<T> }; // readonly derived
+export type WritableAtom<T> = ReadableAtom<T> & { write: Writer<T> }; // read-write derived
 
-export type GenericAtom<T> = WritableAtom<T> | ReadableAtom<T>;
+export type GenericAtom<T> = Primitive<T> | ReadableAtom<T> | WritableAtom<T>;

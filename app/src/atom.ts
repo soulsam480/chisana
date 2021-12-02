@@ -1,4 +1,4 @@
-import { atom } from '../../lib/src/index';
+import { atom } from 'chisana';
 import { computed, ref } from 'vue';
 
 // primitive
@@ -12,4 +12,16 @@ export const doubledAtom = atom((get) =>
 // derived from derived
 export const oneAdded = atom((get) =>
   computed(() => get(doubledAtom).value + 1),
+);
+
+// read write derived
+
+export const baseAtom = atom(ref(1));
+
+export const tripledAtom = atom(
+  (get) => computed(() => get(baseAtom).value * 3),
+  (get, set, update) => {
+    set(someAtom, get(someAtom).value + 1);
+    set(baseAtom, update + 2);
+  },
 );
