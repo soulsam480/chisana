@@ -5,10 +5,11 @@
 
 ![npm](https://img.shields.io/npm/v/chisana) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/chisana) ![GitHub](https://img.shields.io/github/license/soulsam480/chisana) ![npm](https://img.shields.io/npm/dm/chisana)
 
-- pre alpha
+- alpha
 - atoms
   - writable
   - derived readonly
+  - derived read-write
 
 ### based on the amazing work of
 - Jotai -> https://github.com/pmndrs/jotai

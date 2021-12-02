@@ -7,15 +7,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ['vue'],
-      output: {
-        globals: {
-          vue: 'Vue',
-        },
-      },
     },
     lib: {
       entry: 'src/index.ts',
-      formats: ['cjs', 'es', 'iife'],
+      formats: ['cjs', 'es'],
     },
     minify: 'terser',
   },
