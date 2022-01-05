@@ -5,23 +5,28 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
+      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     },
     "./utils": {
-      "require": "./dist/utils/utils.cjs",
+      "require": "./dist/utils/utils.js",
       "import": "./dist/utils/utils.mjs",
       "types": "./dist/utils/index.d.ts"
-    }
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "*.d.ts",
+    "*.mjs"
   ],
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "vite build && npm run dts",
     "dts": "tsc --emitDeclarationOnly --declaration"
   },
@@ -29,8 +34,8 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "4.5.4",
-    "vite": "^2.6.14",
-    "vue": "^3.2.23"
+    "vite": "^2.7.10",
+    "vue": "^3.2.26"
   },
   "repository": {
     "type": "git",

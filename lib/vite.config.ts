@@ -20,7 +20,7 @@ export default defineConfig({
       output: [
         {
           entryFileNames: ({ name: fileName }) => {
-            return `${fileName}.cjs`;
+            return `${fileName}.js`;
           },
           format: 'cjs',
           exports: 'named',

@@ -6,13 +6,16 @@
     "dev:app": "cd app && npm run dev",
     "build:lib": "cd lib && npm run build",
     "build:app": "cd app && npm run build",
-    "release:lib": "cd lib && npm publish --access public"
+    "release:lib": "cd lib && npm publish --access public",
+    "test": "vitest",
+    "coverage": "vitest --coverage"
   },
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
     "typescript": "4.4.4",
-    "vite": "^2.6.14",
-    "vue": "^3.2.23"
+    "vite": "^2.7.10",
+    "vitest": "^0.0.133",
+    "vue": "^3.2.26"
   }
 }

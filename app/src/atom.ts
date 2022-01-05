@@ -25,3 +25,5 @@ export const tripledAtom = atom(
     set(baseAtom, update + 2);
   },
 );
+
+// export const persistedAtom = atomWithStorage;
