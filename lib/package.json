@@ -5,13 +5,18 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/chisana.cjs.js",
-      "import": "./dist/chisana.es.js",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./utils": {
+      "require": "./dist/utils/utils.cjs",
+      "import": "./dist/utils/utils.mjs",
+      "types": "./dist/utils/index.d.ts"
     }
   },
-  "main": "./dist/chisana.cjs.js",
-  "module": "./dist/chisana.es.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "typings": "./dist/index.d.ts",
   "files": [
     "dist"

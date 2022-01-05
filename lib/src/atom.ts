@@ -91,6 +91,14 @@ function createGetAtom<T>(
   atom: GenericAtom<T>,
   chisana: ChisanaWithShallowState<Chisana>,
 ) {
+  // set value function
+  const setValue: SetValue<T> = (val) => {
+    chisana._r[atom.key] =
+      typeof val === 'function'
+        ? (val as Function)(chisana._r[atom.key] as T)
+        : val;
+  };
+
   const getAtomVal: Getter = <T>(atom: GenericAtom<T>) => {
     createGetAtom(atom, chisana);
     // to cerate effect and retain reactivity
@@ -104,6 +112,9 @@ function createGetAtom<T>(
       // TODO: this can be improved when a derived atom is used
       value: isRef<T>(atom.read) ? atom.read : atom.read(getAtomVal),
     });
+
+    // @ts-expect-error here this is basically a primitive or derived atom
+    atom.onRegister && atom.onRegister(setValue);
   }
 }
 

@@ -1,5 +1,11 @@
 import { defineConfig } from 'vite';
 
+import { resolve } from 'path';
+
+const globals = {
+  vue: 'Vue',
+};
+
 export default defineConfig({
   define: {
     __DEV__: "(process.env.NODE_ENV !== 'production')",
@@ -7,11 +13,34 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ['vue'],
+      input: {
+        index: resolve(__dirname, 'src/index.ts'),
+        utils: resolve(__dirname, 'src/utils/index.ts'),
+      },
+      output: [
+        {
+          entryFileNames: ({ name: fileName }) => {
+            return `${fileName}.cjs`;
+          },
+          format: 'cjs',
+          exports: 'named',
+          globals,
+
+          preserveModules: true,
+        },
+        {
+          entryFileNames: ({ name: fileName }) => {
+            return `${fileName}.mjs`;
+          },
+          format: 'esm',
+          globals,
+          preserveModules: true,
+        },
+      ],
     },
     lib: {
       entry: 'src/index.ts',
       formats: ['cjs', 'es'],
     },
-    minify: 'terser',
   },
 });

@@ -27,8 +27,13 @@ export type Atom = {
   key: string;
 };
 
-export type Primitive<T> = Atom & { read: Ref<T> }; // primitive
+export type onRegister<T> = { (setVal: SetValue<T>): void };
+
+export type Primitive<T> = Atom & { read: Ref<T>; onRegister?: onRegister<T> }; // primitive
 export type ReadableAtom<T> = Atom & { read: Reader<T> }; // readonly derived
-export type WritableAtom<T> = ReadableAtom<T> & { write: Writer<T> }; // read-write derived
+export type WritableAtom<T> = ReadableAtom<T> & {
+  write: Writer<T>;
+  onRegister?: onRegister<T>;
+}; // read-write derived
 
 export type GenericAtom<T> = Primitive<T> | ReadableAtom<T> | WritableAtom<T>;
