@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'vitest';
 import { ref, isRef, computed } from 'vue';
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { atom, createChisana, useAtom } from '@/atom';
 
 describe('Create atoms', () => {
@@ -61,7 +61,7 @@ describe('consume atoms', () => {
       },
     };
 
-    const w1 = mount(TestComponent, {
+    const w1 = shallowMount(TestComponent, {
       global: { plugins: [chisana] },
     });
 
@@ -74,5 +74,84 @@ describe('consume atoms', () => {
     w1.vm.setAtom((pVal) => pVal * 2);
     await w1.vm.$nextTick();
     expect(w1.text()).toBe('4');
+  });
+
+  test('consume derived readonly atoms', async () => {
+    const chisana = createChisana();
+
+    const baseAtom = atom(ref(1));
+
+    const derivedAtom = atom((get) => computed(() => get(baseAtom).value * 2));
+
+    const TestComponent = {
+      template: `<div data-test="base">{{ val }}</div> <div data-test="derived">{{ derivedVal }}</div>`,
+      setup() {
+        const [derivedVal] = useAtom(derivedAtom);
+        const [val, setVal] = useAtom(baseAtom);
+        return { val, setVal, derivedVal };
+      },
+    };
+
+    const w1 = shallowMount(TestComponent, {
+      global: { plugins: [chisana] },
+    });
+
+    const base = w1.find('[data-test="base"]');
+    const derived = w1.find('[data-test="derived"]');
+
+    expect(base.text()).toBe('1');
+    expect(derived.text()).toBe('2');
+
+    w1.vm.setVal(2);
+
+    await w1.vm.$nextTick();
+
+    expect(base.text()).toBe('2');
+    expect(derived.text()).toBe('4');
+  });
+
+  test('consume read-write derived atoms', async () => {
+    const chisana = createChisana();
+
+    const baseAtom = atom(ref(1));
+    const otherAtom = atom(ref(5));
+
+    const derivedAtom = atom(
+      (get) => computed(() => get(baseAtom).value * 2),
+      (get, set, update) => {
+        set(baseAtom, update * 2);
+        set(otherAtom, get(otherAtom).value + update);
+      },
+    );
+
+    const TestComponent = {
+      template: `<div data-test="base">{{ val }}</div> <div data-test="derived">{{ derivedVal }}</div>  <div data-test="other">{{ otherVal }}</div>`,
+      setup() {
+        const [val] = useAtom(baseAtom);
+        const [otherVal] = useAtom(otherAtom);
+        const [derivedVal, setVal] = useAtom(derivedAtom);
+        return { val, setVal, derivedVal, otherVal };
+      },
+    };
+
+    const w1 = shallowMount(TestComponent, {
+      global: { plugins: [chisana] },
+    });
+
+    const base = w1.find('[data-test="base"]');
+    const derived = w1.find('[data-test="derived"]');
+    const other = w1.find('[data-test="other"]');
+
+    expect(base.text()).toBe('1');
+    expect(other.text()).toBe('5');
+    expect(derived.text()).toBe('2');
+
+    w1.vm.setVal(2);
+
+    await w1.vm.$nextTick();
+
+    expect(base.text()).toBe('4');
+    expect(other.text()).toBe('7');
+    expect(derived.text()).toBe('8');
   });
 });
