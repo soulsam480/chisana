@@ -8,12 +8,14 @@
     "build:app": "cd app && npm run build",
     "release:lib": "cd lib && npm publish --access public",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "author": "soulsam480 <soulsam480@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@vue/test-utils": "^2.0.0-rc.18",
+    "c8": "^7.11.0",
     "typescript": "4.4.4",
     "vite": "^2.7.13",
     "vitest": "^0.2.1",

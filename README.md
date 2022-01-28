@@ -3,7 +3,7 @@
 
 ### status
 
-![npm](https://img.shields.io/npm/v/chisana) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/chisana) ![GitHub](https://img.shields.io/github/license/soulsam480/chisana) ![npm](https://img.shields.io/npm/dm/chisana)
+![npm](https://img.shields.io/npm/v/chisana) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/chisana) ![GitHub](https://img.shields.io/github/license/soulsam480/chisana) ![npm](https://img.shields.io/npm/dm/chisana) [![Codecov][codecov-src]][codecov-href] 
 
 - alpha
 - atoms
@@ -148,3 +148,6 @@ function setValueFunction(val: number) {
 
 ### need help
 I don't have a deep knowledge on the vue reactivity internals and I feel this lib can be improved a lot. Please help me with your knowledge, Thanks
+
+[codecov-src]: https://img.shields.io/codecov/c/gh/soulsam480/chisana/main?style=flat-square
+[codecov-href]: https://codecov.io/gh/soulsam480/chisana

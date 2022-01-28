@@ -11,6 +11,7 @@ export default defineConfig({
     __DEV__: "(process.env.NODE_ENV !== 'production')",
   },
   build: {
+    minify: 'terser',
     rollupOptions: {
       external: ['vue'],
       input: {
@@ -25,7 +26,6 @@ export default defineConfig({
           format: 'cjs',
           exports: 'named',
           globals,
-
           preserveModules: true,
         },
         {
