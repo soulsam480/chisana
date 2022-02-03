@@ -1,6 +1,6 @@
 {
   "name": "chisana",
-  "version": "0.0.2-alpha",
+  "version": "0.1.0",
   "description": "Jotai inspired atomic state management for vue 3",
   "sideEffects": false,
   "exports": {
