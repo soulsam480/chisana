@@ -1,4 +1,5 @@
-import { atom } from 'chisana';
+import { atom, atomWithStorage } from 'chisana';
+
 import { computed, ref } from 'vue';
 
 // primitive
@@ -26,4 +27,4 @@ export const tripledAtom = atom(
   },
 );
 
-// export const persistedAtom = atomWithStorage;
+export const persistedCounterAtom = atomWithStorage('counter', ref(0));

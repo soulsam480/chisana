@@ -1,4 +1,4 @@
-import { Ref } from 'vue';
+import { computed, Ref } from 'vue';
 import { atom } from '../atom';
 
 export type Storage<Value> = {
@@ -39,15 +39,10 @@ export function atomWithStorage<T>(
   };
 
   const anAtom = atom(
-    (get) => get(baseAtom),
-    (get, set, update) => {
-      const newValue =
-        typeof update === 'function'
-          ? (update as Function)(get(baseAtom).value)
-          : update;
-
-      set(baseAtom, newValue);
-      storage.setItem(key, newValue);
+    (get) => computed(() => get(baseAtom).value),
+    (_, set, update) => {
+      set(baseAtom, update);
+      storage.setItem(key, update);
     },
   );
 

@@ -53,6 +53,13 @@ describe('atom with storage tests', () => {
 
     expect(storageData.count).toBe(2);
     expect(w1.text()).toBe('2');
+
+    w1.vm.setAtom((val) => val + 1);
+
+    await w1.vm.$nextTick();
+
+    expect(storageData.count).toBe(3);
+    expect(w1.text()).toBe('3');
   });
 
   test('simple count without previous value', async () => {

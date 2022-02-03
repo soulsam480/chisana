@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { useAtom } from 'chisana';
-import { baseAtom, doubledAtom, oneAdded, someAtom, tripledAtom } from './atom';
+import {
+  baseAtom,
+  doubledAtom,
+  oneAdded,
+  persistedCounterAtom,
+  someAtom,
+  tripledAtom,
+} from './atom';
 import HelloWorld from './components/HelloWorld.vue';
 
 // primitive
@@ -17,6 +24,8 @@ const [tripleVal, setTripleVal] = useAtom(tripledAtom);
 function setValueFunction(val: number) {
   return val + 1;
 }
+
+const [counterVal, setCounterVal] = useAtom(persistedCounterAtom);
 </script>
 <template>
   <div class="main">
@@ -37,6 +46,11 @@ function setValueFunction(val: number) {
     <button @click="setTripleVal(setValueFunction)">inc tripledAtom</button>
 
     <h4>From hello world</h4>
+
+    <div>Counter :: {{ counterVal }}</div>
+
+    <button @click="setCounterVal((v) => v + 1)">Add</button>
+
     <HelloWorld />
   </div>
 </template>
