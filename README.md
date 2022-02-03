@@ -3,7 +3,7 @@
 
 ### status
 
-![npm](https://img.shields.io/npm/v/chisana) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/chisana) ![GitHub](https://img.shields.io/github/license/soulsam480/chisana) ![npm](https://img.shields.io/npm/dm/chisana) [![Codecov][codecov-src]][codecov-href] 
+![npm](https://img.shields.io/npm/v/chisana) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/chisana) ![GitHub](https://img.shields.io/github/license/soulsam480/chisana) ![npm](https://img.shields.io/npm/dm/chisana) [![Codecov][codecov-src]][codecov-href] [![Test](https://github.com/soulsam480/chisana/actions/workflows/test.yml/badge.svg)](https://github.com/soulsam480/chisana/actions/workflows/test.yml)
 
 - alpha
 - atoms
